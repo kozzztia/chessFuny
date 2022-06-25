@@ -1,0 +1,42 @@
+
+
+.counter{
+    grid-area: a;
+    padding: 5px;
+  }
+.logMenu{
+    grid-area: b;
+    width: 180px;
+    padding: 5px;
+  }
+.chess{
+    grid-area: c;
+    width: 1000px;
+    height:1000px;
+    display: grid;
+    grid-template-columns:  repeat(5, 1fr);
+    grid-template-rows: auto;
+}
+.cell{
+  width: 200px;
+  height: 200px;
+  border: 1px solid #fff;
+  display: flex;
+  padding: 5px;
+  background: rgb(194, 194, 194);
+  color: #000;
+  position: relative;
+}
+.cell:nth-child(even){
+  background: rgb(50, 50, 50);
+  color: #fff;
+}
+.pawn{
+   position: relative;
+   overflow: hidden;
+}
+.pawn>img{
+  position: relative;
+  inset: 0;
+  width: 100%;
+}
