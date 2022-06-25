@@ -8,11 +8,11 @@ export const defaultState = {
     },
     chessCellState: {
         cells: [
-            { x: 1, y: 1, flag: false, figure: null }, { x: 1, y: 2, flag: true, figure: "black" }, { x: 1, y: 3, flag: true, figure: 'black' }, { x: 1, y: 4, flag: true, figure: 'black' }, { x: 1, y: 5, flag: false, figure: null },
-            { x: 2, y: 1, flag: false, figure: null }, { x: 2, y: 2, flag: false, figure: null }, { x: 2, y: 3, flag: false, figure: null }, { x: 2, y: 4, flag: false, figure: null }, { x: 2, y: 5, flag: false, figure: null },
-            { x: 3, y: 1, flag: false, figure: null }, { x: 3, y: 2, flag: false, figure: null }, { x: 3, y: 3, flag: false, figure: null }, { x: 3, y: 4, flag: false, figure: null }, { x: 3, y: 5, flag: false, figure: null },
-            { x: 4, y: 1, flag: false, figure: null }, { x: 4, y: 2, flag: false, figure: null }, { x: 4, y: 3, flag: false, figure: null }, { x: 4, y: 4, flag: false, figure: null }, { x: 4, y: 5, flag: false, figure: null },
-            { x: 5, y: 1, flag: false, figure: null }, { x: 5, y: 2, flag: true, figure: "white" }, { x: 5, y: 3, flag: true, figure: 'white' }, { x: 5, y: 4, flag: true, figure: 'white' }, { x: 5, y: 5, flag: false, figure: null },
+            { x: 1, y: 1, flag: false, figure: null, turn: true }, { x: 1, y: 2, flag: true, figure: "black", turn: false }, { x: 1, y: 3, flag: true, figure: 'black', turn: false }, { x: 1, y: 4, flag: true, figure: 'black', turn: false }, { x: 1, y: 5, flag: false, figure: null, turn: true },
+            { x: 2, y: 1, flag: false, figure: null, turn: true }, { x: 2, y: 2, flag: false, figure: null, turn: true }, { x: 2, y: 3, flag: false, figure: null, turn: true }, { x: 2, y: 4, flag: false, figure: null, turn: true }, { x: 2, y: 5, flag: false, figure: null, turn: true },
+            { x: 3, y: 1, flag: false, figure: null, turn: true }, { x: 3, y: 2, flag: false, figure: null, turn: true }, { x: 3, y: 3, flag: false, figure: null, turn: true }, { x: 3, y: 4, flag: false, figure: null, turn: true }, { x: 3, y: 5, flag: false, figure: null, turn: true },
+            { x: 4, y: 1, flag: false, figure: null, turn: true }, { x: 4, y: 2, flag: false, figure: null, turn: true }, { x: 4, y: 3, flag: false, figure: null, turn: true }, { x: 4, y: 4, flag: false, figure: null, turn: true }, { x: 4, y: 5, flag: false, figure: null, turn: true },
+            { x: 5, y: 1, flag: false, figure: null, turn: true }, { x: 5, y: 2, flag: true, figure: "white", turn: false }, { x: 5, y: 3, flag: true, figure: 'white', turn: false }, { x: 5, y: 4, flag: true, figure: 'white', turn: false }, { x: 5, y: 5, flag: false, figure: null, turn: true },
         ]
     },
     logMenu: {
@@ -64,10 +64,12 @@ const reducer = (state = defaultState, action) => {
                 ...state,
                 chessCellState: {
                     ...state.chessCellState,
-                    cells: [
-                        ...state.chessCellState.cells.forEach(cell => cell.x === action.turnX || cell.y === action.turnY ? cell.flag = true : cell.flag = false)
+                    ...state.chessCellState.cells.forEach(cell => cell.x === action.turnX + 1 && cell.y === action.turnY ? cell.turn = false : console.log(cell)),
+                    ...state.chessCellState.cells.forEach(cell => cell.x === action.turnX && cell.y === action.turnY ? cell.turn = true : console.log(cell)),
+                    ...state.chessCellState.cells.forEach(cell => cell.x === action.turnX - 1 && cell.y === action.turnY ? cell.flag = false : console.log(cell)),
+                    ...state.chessCellState.cells.forEach(cell => cell.x === action.turnX && cell.y === action.turnY ? cell.flag = true : console.log(cell)),
 
-                    ]
+
                 },
             };
         default: return state;

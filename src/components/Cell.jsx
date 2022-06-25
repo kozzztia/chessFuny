@@ -37,7 +37,7 @@ const Cell = (props) => {
   return (
     <button className={styles.cell} 
     onClick={()=>addStepToBlogAndResetStep(props.cell)}
-    disabled={!props.cell.flag}
+    disabled={props.cell.turn}
     // onFocus={}
     >
       {
